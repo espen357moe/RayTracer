@@ -30,14 +30,9 @@ namespace RayTracer
             e.Graphics.DrawImage(_bitmap!, 0, 0);
         }
 
-        protected override void OnResizeEnd(EventArgs e)
-        {
-            Resize(ClientSize.Width, ClientSize.Height);
-            Invalidate();
-        }
-
         private void RenderFrame()
         {
+            // Move the sphere by 0.1f away from the camera on each frame
             _scene._spheres[0].Position += new Vector3(0f, 0f, 0.1f);
 
             // Iterate through the scanlines
@@ -68,6 +63,13 @@ namespace RayTracer
             }
         }
 
+        // To allow resizing the window without artifacts
+        protected override void OnResizeEnd(EventArgs e)
+        {
+            Resize(ClientSize.Width, ClientSize.Height);
+            Invalidate();
+        }
+
         private void Resize(int width, int height)
         {
             if (_bitmap != null)
@@ -83,6 +85,7 @@ namespace RayTracer
             _bitmap = new Bitmap(_width, _height, _width * 4, System.Drawing.Imaging.PixelFormat.Format32bppPArgb, _handle.AddrOfPinnedObject());
         }
 
+        // To mitigate flickering
         private void timer1_Tick(object sender, EventArgs e)
         {
             Invalidate();

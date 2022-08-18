@@ -14,7 +14,7 @@ namespace RayTracer
         }
 
         /// <summary>
-        /// Stole this from an example on the web, don't really know what the variables represent
+        /// Stole this from an example on how to detect an intersection, don't really know what the variables represent
         /// </summary>
         /// <param name="ray"></param>
         /// <returns></returns>

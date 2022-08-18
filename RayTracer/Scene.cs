@@ -27,7 +27,8 @@ namespace RayTracer
                 var hit = sphere.Intersect(ray);
 
                 if (hit != null)
-                {                    
+                {   
+                    // Calculate the intensity of each color channel where the ray hits the sphere
                     var intensity = 1-MathF.Max(0, Vector3.Dot(Vector3.Normalize(hit.IntersectionPoint - _lights[0].Position), hit.Normal));
                     return new Vector4(intensity, intensity, intensity, 1);
                 }
